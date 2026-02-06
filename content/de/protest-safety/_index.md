@@ -1,3 +1,5 @@
 ---
-title: protest-safety
+title: "Sicherheit bei Demos"
+description: "Sicher demonstrieren"
+translationKey: "protest-safety"
 ---
