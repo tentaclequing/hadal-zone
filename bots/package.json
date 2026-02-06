@@ -1,0 +1,24 @@
+{
+  "name": "hadal-zone-notification-bot",
+  "version": "1.0.0",
+  "description": "Notification bot for hadal-zone: posts to Telegram and Matrix when new documents are added",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "jest --verbose"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  },
+  "keywords": [
+    "hadal-zone",
+    "telegram",
+    "matrix",
+    "webhook",
+    "notification"
+  ],
+  "license": "MIT"
+}
