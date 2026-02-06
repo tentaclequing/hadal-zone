@@ -22,3 +22,4 @@ node_modules/
 
 # Hugo stats
 hugo_stats.json
+.hugo_build.lock
