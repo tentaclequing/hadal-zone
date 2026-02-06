@@ -1,0 +1,52 @@
+baseURL = 'https://tentaclequing.github.io/hadal-zone/'
+title = 'hadal-zone'
+theme = 'hadal'
+
+# Default language
+defaultContentLanguage = 'en'
+defaultContentLanguageInSubdir = true
+
+# Taxonomy
+[taxonomies]
+  category = 'categories'
+  tag = 'tags'
+
+# Multilingual configuration
+[languages]
+  [languages.en]
+    languageName = 'English'
+    contentDir = 'content/en'
+    weight = 1
+    [languages.en.params]
+      description = 'A decentralised library for resilience, mutual aid, and skillsharing.'
+
+  [languages.de]
+    languageName = 'Deutsch'
+    contentDir = 'content/de'
+    weight = 2
+    [languages.de.params]
+      description = 'Eine dezentrale Bibliothek für Resilienz, gegenseitige Hilfe und Wissensaustausch.'
+
+# Global parameters
+[params]
+  defaultAuthor = 'anemone'
+  logoAlt = 'hadal-zone — decentralised library for resilience'
+  ipfsGateway = ''  # Updated by CI after each deploy
+
+# Output formats
+[outputs]
+  home = ['HTML', 'RSS']
+  section = ['HTML', 'RSS']
+
+# Build settings
+[build]
+  [build.buildStats]
+    enable = true
+
+# Markup settings
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = false
+  [markup.highlight]
+    noClasses = false
