@@ -1,0 +1,25 @@
+{
+  "defaults": {
+    "timeout": 30000,
+    "wait": 1000,
+    "standard": "WCAG2AA",
+    "runners": ["axe"],
+    "chromeLaunchConfig": {
+      "args": ["--no-sandbox", "--disable-setuid-sandbox"]
+    }
+  },
+  "urls": [
+    "http://localhost:8080/en/",
+    "http://localhost:8080/de/",
+    "http://localhost:8080/en/digital-security/",
+    "http://localhost:8080/en/mutual-aid/",
+    "http://localhost:8080/en/protest-safety/",
+    "http://localhost:8080/en/legal/",
+    "http://localhost:8080/en/movement/",
+    "http://localhost:8080/en/skillsharing/",
+    "http://localhost:8080/en/wellbeing/",
+    "http://localhost:8080/en/accessibility/",
+    "http://localhost:8080/en/mirror/",
+    "http://localhost:8080/de/mirror/"
+  ]
+}
