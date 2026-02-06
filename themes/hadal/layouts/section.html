@@ -1,10 +1,57 @@
 {{ define "main" }}
-  <h1>{{ .Title }}</h1>
-  {{ .Content }}
-  {{ range .Pages }}
-    <section>
-      <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
-      {{ .Summary }}
-    </section>
-  {{ end }}
+  <section class="category-listing">
+    <h1>{{ .Title }}</h1>
+
+    {{- with .Params.description }}
+      <p class="category-description">{{ . }}</p>
+    {{- end }}
+
+    {{ .Content }}
+
+    {{- $pages := .Pages }}
+    {{- if eq (len $pages) 0 }}
+      <p class="no-documents">{{ i18n "search_no_results" | default "No documents yet." }}</p>
+    {{- else }}
+      <ul class="document-list">
+        {{- range $pages }}
+          {{- if ne .Kind "section" }}
+            <li class="document-item">
+              <article>
+                <h2 class="document-title">
+                  <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+                </h2>
+
+                <div class="document-meta">
+                  {{/* Author with anemone default (task 2.6) */}}
+                  <span class="document-author">
+                    <strong>{{ i18n "label_author" }}:</strong>
+                    {{- $author := .Params.author -}}
+                    {{- if or (not $author) (eq $author "") (eq $author "anemone") }}
+                      {{ i18n "label_anemone" | default "anemone" }}
+                    {{- else }}
+                      {{ $author }}
+                    {{- end }}
+                  </span>
+
+                  <span class="document-date">
+                    <strong>{{ i18n "label_last_updated" }}:</strong>
+                    {{- $displayDate := .Lastmod | default .Date }}
+                    <time datetime="{{ $displayDate | time.Format "2006-01-02" }}">
+                      {{ $displayDate | time.Format ":date_long" }}
+                    </time>
+                  </span>
+                </div>
+
+                {{- with .Params.tldr }}
+                  <div class="document-tldr">
+                    <strong>{{ i18n "label_tldr" }}:</strong> {{ . }}
+                  </div>
+                {{- end }}
+              </article>
+            </li>
+          {{- end }}
+        {{- end }}
+      </ul>
+    {{- end }}
+  </section>
 {{ end }}
