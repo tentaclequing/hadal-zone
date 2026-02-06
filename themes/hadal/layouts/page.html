@@ -1,10 +1,121 @@
 {{ define "main" }}
-  <h1>{{ .Title }}</h1>
+  <article class="document-page">
+    <header class="document-header">
+      <h1>{{ .Title }}</h1>
 
-  {{ $dateMachine := .Date | time.Format "2006-01-02T15:04:05-07:00" }}
-  {{ $dateHuman := .Date | time.Format ":date_long" }}
-  <time datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>
+      {{/* Metadata display */}}
+      <div class="document-meta">
+        {{/* Author with anemone default (task 2.6) */}}
+        <div class="meta-item meta-author">
+          <strong>{{ i18n "label_author" }}:</strong>
+          {{- $author := .Params.author -}}
+          {{- if or (not $author) (eq $author "") (eq $author "anemone") }}
+            {{ i18n "label_anemone" | default "anemone" }}
+          {{- else }}
+            {{ $author }}
+          {{- end }}
+        </div>
 
-  {{ .Content }}
-  {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
+        {{/* Category */}}
+        <div class="meta-item meta-category">
+          <strong>{{ i18n "label_category" }}:</strong>
+          {{- with .CurrentSection }}
+            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+          {{- end }}
+        </div>
+
+        {{/* Language */}}
+        <div class="meta-item meta-language">
+          <strong>{{ i18n "label_language" }}:</strong>
+          {{ site.Language.LanguageName }}
+        </div>
+
+        {{/* Date */}}
+        <div class="meta-item meta-date">
+          <strong>{{ i18n "label_last_updated" }}:</strong>
+          {{- $displayDate := .Lastmod | default .Date }}
+          <time datetime="{{ $displayDate | time.Format "2006-01-02" }}">
+            {{ $displayDate | time.Format ":date_long" }}
+          </time>
+        </div>
+
+        {{/* Tags */}}
+        {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
+      </div>
+    </header>
+
+    {{/* TL;DR displayed prominently (task 2.5 / spec: above preview/download) */}}
+    {{- with .Params.tldr }}
+      <div class="tldr" role="note" aria-label="{{ i18n "label_tldr" }}">
+        <strong>{{ i18n "label_tldr" }}:</strong>
+        <p>{{ . }}</p>
+      </div>
+    {{- end }}
+
+    {{/* Cross-language document linking (task 7) */}}
+    {{ partial "translations.html" . }}
+
+    {{/* Accessible text version link - prominent when both PDF and .md exist (task 3.6) */}}
+    {{- $files := .Params.files | default (slice) }}
+    {{- $hasPDF := false }}
+    {{- $hasMD := false }}
+    {{- $mdFile := "" }}
+    {{- range $files }}
+      {{- $ext := strings.ToLower (path.Ext .) }}
+      {{- if eq $ext ".pdf" }}
+        {{- $hasPDF = true }}
+      {{- end }}
+      {{- if eq $ext ".md" }}
+        {{- $hasMD = true }}
+        {{- $mdFile = . }}
+      {{- end }}
+    {{- end }}
+
+    {{- if and $hasPDF $hasMD }}
+      <div class="accessible-version">
+        <a href="{{ .RelPermalink }}{{ $mdFile }}" target="_blank" rel="noopener" class="btn btn-accessible">
+          {{ i18n "btn_read_accessible" | default "Read accessible text version" }}
+        </a>
+      </div>
+    {{- end }}
+
+    {{/* File list with View/Download buttons (tasks 3.1-3.5) */}}
+    {{- if gt (len $files) 0 }}
+      <div class="document-files">
+        <h2>{{ i18n "label_files" | default "Files" }}</h2>
+        <ul class="file-list">
+          {{- range $files }}
+            {{- $ext := strings.ToLower (path.Ext .) }}
+            {{- $filename := path.Base . }}
+            {{- $fileURL := printf "%s%s" $.RelPermalink . }}
+            <li class="file-item">
+              <span class="file-name">{{ $filename }}</span>
+              <span class="file-actions">
+                {{/* Determine if file is viewable in browser (tasks 3.1-3.4) */}}
+                {{- $viewable := false }}
+                {{- if or (eq $ext ".pdf") (eq $ext ".png") (eq $ext ".jpg") (eq $ext ".jpeg") (eq $ext ".gif") (eq $ext ".svg") (eq $ext ".md") (eq $ext ".txt") }}
+                  {{- $viewable = true }}
+                {{- end }}
+
+                {{- if $viewable }}
+                  <a href="{{ $fileURL }}" target="_blank" rel="noopener" class="btn btn-view">
+                    {{ i18n "btn_view" | default "View" }}
+                  </a>
+                {{- end }}
+
+                <a href="{{ $fileURL }}" download="{{ $filename }}" class="btn btn-download">
+                  {{ i18n "btn_download" | default "Download" }}
+                </a>
+              </span>
+            </li>
+          {{- end }}
+        </ul>
+      </div>
+    {{- end }}
+
+    {{/* Document body content */}}
+    <div class="document-content">
+      {{ .Content }}
+    </div>
+  </article>
 {{ end }}

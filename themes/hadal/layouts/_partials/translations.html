@@ -1,0 +1,32 @@
+{{/*
+  Translations partial - displays links to other language versions of the
+  current document, using Hugo's translationKey front matter field.
+
+  Task 7.1: Uses translationKey to link translations
+  Task 7.2: "Available in other languages" partial
+  Task 7.3: Marks adapted translations with "Adapted for [country]" note
+*/}}
+
+{{- $translations := .Translations }}
+{{- if gt (len $translations) 0 }}
+  <nav class="translations" aria-label="{{ i18n "label_also_available_in" }}">
+    <strong>{{ i18n "label_also_available_in" }}:</strong>
+    <ul class="translation-list">
+      {{- range $translations }}
+        <li class="translation-item">
+          <a href="{{ .RelPermalink }}" hreflang="{{ .Lang }}">
+            {{ .Language.LanguageName }}
+          </a>
+          {{- if .Params.adapted }}
+            {{- $country := .Params.country | default .Params.adaptation_note }}
+            {{- if $country }}
+              <span class="adaptation-note">
+                ({{ i18n "label_adapted_for" (dict "Country" $country) }})
+              </span>
+            {{- end }}
+          {{- end }}
+        </li>
+      {{- end }}
+    </ul>
+  </nav>
+{{- end }}
