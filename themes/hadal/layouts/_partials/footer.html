@@ -3,3 +3,7 @@
   <p><a href="{{ . }}" rel="noopener" target="_blank">{{ i18n "footer_ipfs" }}</a></p>
 {{- end }}
 <p><a href="https://github.com/tentaclequing/hadal-zone" rel="noopener" target="_blank">{{ i18n "footer_source" }}</a></p>
+{{- $mirrorPage := site.GetPage "/mirror" }}
+{{- if $mirrorPage }}
+  <p class="footer-mirror"><a href="{{ $mirrorPage.RelPermalink }}">{{ i18n "footer_mirror_help" | default "Help keep this page up" }}</a></p>
+{{- end }}
