@@ -1,0 +1,18 @@
+{{- if hugo.IsMultilingual }}
+  <nav class="language-switcher" aria-label="Language">
+    <ul>
+      {{- range site.Languages }}
+        {{- $langPage := index (where $.Translations "Lang" .Lang) 0 }}
+        <li>
+          {{- if eq .Lang site.Language.Lang }}
+            <span aria-current="true">{{ .LanguageName }}</span>
+          {{- else if $langPage }}
+            <a href="{{ $langPage.RelPermalink }}" lang="{{ .Lang }}" hreflang="{{ .Lang }}">{{ .LanguageName }}</a>
+          {{- else }}
+            <a href="{{ .Lang | printf "/%s/" }}" lang="{{ .Lang }}" hreflang="{{ .Lang }}">{{ .LanguageName }}</a>
+          {{- end }}
+        </li>
+      {{- end }}
+    </ul>
+  </nav>
+{{- end }}
