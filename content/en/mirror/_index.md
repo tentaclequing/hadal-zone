@@ -6,7 +6,7 @@ translationKey: "mirror"
 
 ## Why mirror hadal-zone?
 
-hadal-zone is a library of resources for resistance and mutual aid. Centralised hosting relies on a single provider, which means a single point of failure. By mirroring the site on IPFS (the InterPlanetary File System), you help ensure these resources stay accessible to everyone who needs them -- no matter what happens to the primary host.
+hadal-zone is a library of resources for resilience and mutual aid. Centralised hosting relies on a single provider, which means a single point of failure. By mirroring the site on IPFS (the InterPlanetary File System), you help ensure these resources stay accessible to everyone who needs them -- no matter what happens to the primary host.
 
 Every mirror is an act of solidarity.
 
@@ -138,4 +138,4 @@ If you prefer a graphical interface, install [IPFS Desktop](https://docs.ipfs.te
 
 ## Thank you
 
-Every mirror makes hadal-zone more resilient. Whether you run a dedicated node or just pin on your laptop when it is online -- you are part of the network that keeps these resources alive.
+Every mirror makes hadal-zone more resilient. Whether you run a dedicated node or just pin on your laptop when it is online -- you are part of the network that keeps these resources available.

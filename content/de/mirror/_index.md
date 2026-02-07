@@ -6,7 +6,7 @@ translationKey: "mirror"
 
 ## Warum hadal-zone spiegeln?
 
-hadal-zone ist eine Bibliothek mit Ressourcen fuer Widerstand und gegenseitige Hilfe. Zentrales Hosting hat eine einzige Schwachstelle -- den Anbieter selbst. Indem du die Seite auf IPFS (dem InterPlanetary File System) spiegelst, hilfst du sicherzustellen, dass diese Ressourcen fuer alle zugaenglich bleiben -- egal was mit dem primaeren Host passiert.
+hadal-zone ist eine Bibliothek mit Ressourcen fuer Resilienz und gegenseitige Hilfe. Zentrales Hosting hat eine einzige Schwachstelle -- den Anbieter selbst. Indem du die Seite auf IPFS (dem InterPlanetary File System) spiegelst, hilfst du sicherzustellen, dass diese Ressourcen fuer alle zugaenglich bleiben -- egal was mit dem primaeren Host passiert.
 
 Jeder Spiegel ist ein Akt der Solidaritaet.
 
@@ -138,4 +138,4 @@ Wenn du eine grafische Oberflaeche bevorzugst, installiere [IPFS Desktop](https:
 
 ## Danke
 
-Jeder Spiegel macht es hadal-zone widerstandsfaehiger. Ob du einen dedizierten Knoten betreibst oder einfach auf deinem Laptop pinnst, wenn er online ist -- du bist Teil des Netzwerks, das diese Ressourcen am Leben haelt.
+Jeder Spiegel macht hadal-zone widerstandsfaehiger. Ob du einen dedizierten Knoten betreibst oder einfach auf deinem Laptop pinnst, wenn er online ist -- du bist Teil des Netzwerks, das diese Ressourcen verfuegbar haelt.

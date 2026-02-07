@@ -2,14 +2,14 @@
 
 **hadal-zone** is a decentralised library for resilience, mutual aid, and skillsharing. It collects practical documents -- guides, zines, how-tos, legal references, and more -- that help people organise, protect themselves, support their communities, and build collective power.
 
-The project is named after the **hadal zone**, the deepest layer of the ocean. These trenches are nearly unreachable and what settles there is nearly impossible to remove. Like the hadal zone, this library is built to persist -- decentralised, mirrored, and mirrored across multiple networks.
+The project is named after the **hadal zone**, the deepest layer of the ocean. These trenches are nearly unreachable, and what settles there is nearly impossible to remove. Like the hadal zone, this library is built to persist -- decentralised and mirrored across multiple networks.
 
 ## Key features
 
 - **Decentralised** -- hosted on GitHub Pages and mirrored via IPFS, so no single point of failure can take it down.
 - **Accessible** -- built to meet WCAG 2.1 AA standards, with accessible Markdown text versions required alongside any PDF uploads.
 - **Multilingual** -- supports content in any language, with a translation system that links versions of the same document across languages.
-- **Decentralised** -- once pinned to IPFS, content cannot be removed by any single authority.
+- **Resilient** -- once pinned to IPFS, content is distributed across a peer-to-peer network with no single point of failure.
 
 ## Browse the library
 
@@ -23,7 +23,7 @@ Read the full contribution guidelines: [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ## Help mirror the library
 
-If you run an IPFS node, you can help keep the library alive by pinning it. Each deploy publishes the site to IPFS, and the more nodes that pin the content, the more resilient the network becomes. See the IPFS documentation for how to pin a CID to your node.
+If you run an IPFS node, you can help keep the library available by pinning it. Each deploy publishes the site to IPFS, and the more nodes that pin the content, the more resilient the network becomes. See the IPFS documentation for how to pin a CID to your node.
 
 ## License
 

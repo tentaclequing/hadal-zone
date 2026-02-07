@@ -1,8 +1,8 @@
 ## Context
 
-hadal-zone is a new, greenfield project: a decentralised library for resistance and mutual aid resources. There is no existing codebase. The repository currently contains only a CC BY-SA 4.0 license file.
+hadal-zone is a new, greenfield project: a decentralised library for resilience and mutual aid resources. There is no existing codebase. The repository currently contains only a CC BY-SA 4.0 license file.
 
-The platform serves activists, displaced people, and communities under threat — including people with disabilities. Content includes PDFs, spreadsheets, images, markdown, and text documents covering protest safety, legal rights, visa guidance, skillsharing, and more.
+The platform serves people who need practical resources — including people with disabilities. Content includes PDFs, spreadsheets, images, markdown, and text documents covering safety, legal rights, guidance, skillsharing, and more.
 
 Key constraints:
 - Must be resilient (no single point of failure can make content unavailable)
@@ -15,7 +15,7 @@ Key constraints:
 
 **Goals:**
 - Ship a browsable, searchable, accessible static site with initial content
-- Pin all documents to IPFS so they decentralised availability
+- Pin all documents to IPFS for decentralised availability
 - Notify followers via Telegram and Matrix when new content is added
 - Establish a document structure and metadata schema that scales
 - Make contributing translations and new documents possible via GitHub PRs
@@ -79,7 +79,7 @@ Key constraints:
 
 **Rationale:**
 - GitHub Pages is free, reliable, supports custom domains, auto-deploys from repo
-- IPFS ensures a decentralised fallback if the primary host is unavailable
+- IPFS provides a decentralised fallback if the primary host is unavailable
 - GitHub Actions pipeline: build Hugo site → deploy to Pages → pin to IPFS → update CID manifest
 - Netlify/Vercel add no meaningful benefit over GitHub Pages for a static site
 - IPFS-only would hurt discoverability and initial load times

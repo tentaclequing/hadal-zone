@@ -22,7 +22,7 @@ Or, if `ipfsGateway` is empty (not yet deployed), hide the link entirely.
     Available on IPFS
   </a>
   <span class="ipfs-note">
-    Decentralised mirror -- pin this CID to help keep hadal-zone alive.
+    Decentralised mirror -- pin this CID to help keep hadal-zone available.
   </span>
 </div>
 {{ end }}
@@ -46,8 +46,8 @@ Use the i18n system for the link text:
 
 The tooltip / note text:
 
-- English: "Decentralised mirror -- pin this CID to help keep hadal-zone alive."
-- German: "Dezentraler Spiegel -- pinne diese CID, um hadal-zone am Leben zu halten."
+- English: "Decentralised mirror -- pin this CID to help keep hadal-zone available."
+- German: "Dezentraler Spiegel -- pinne diese CID, um hadal-zone verfügbar zu halten."
 
 ### Accessibility
 
