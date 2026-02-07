@@ -1,0 +1,345 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 920" width="820" height="920" font-family="Consolas, 'Courier New', monospace">
+  <defs>
+    <!-- Glow filters -->
+    <filter id="glow-cyan" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-color="#00e5d0" flood-opacity="0.25" result="color"/>
+      <feComposite in="color" in2="blur" operator="in" result="glow"/>
+      <feMerge><feMergeNode in="glow"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow-blue" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-color="#00a0ff" flood-opacity="0.25" result="color"/>
+      <feComposite in="color" in2="blur" operator="in" result="glow"/>
+      <feMerge><feMergeNode in="glow"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow-purple" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-color="#8b5cf6" flood-opacity="0.25" result="color"/>
+      <feComposite in="color" in2="blur" operator="in" result="glow"/>
+      <feMerge><feMergeNode in="glow"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow-pink" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-color="#ff6bb5" flood-opacity="0.25" result="color"/>
+      <feComposite in="color" in2="blur" operator="in" result="glow"/>
+      <feMerge><feMergeNode in="glow"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow-green" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-color="#22d3a0" flood-opacity="0.25" result="color"/>
+      <feComposite in="color" in2="blur" operator="in" result="glow"/>
+      <feMerge><feMergeNode in="glow"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+
+    <!-- Arrow marker definitions -->
+    <marker id="arrow-cyan" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="none" stroke="#00e5d0" stroke-width="1.2"/>
+    </marker>
+    <marker id="arrow-blue" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="none" stroke="#00a0ff" stroke-width="1.2"/>
+    </marker>
+    <marker id="arrow-purple" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="none" stroke="#8b5cf6" stroke-width="1.2"/>
+    </marker>
+    <marker id="arrow-pink" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="none" stroke="#ff6bb5" stroke-width="1.2"/>
+    </marker>
+    <marker id="arrow-dim" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="none" stroke="#1a3a5c" stroke-width="1.2"/>
+    </marker>
+    <marker id="arrow-down-dim" markerWidth="6" markerHeight="8" refX="3" refY="8" orient="auto">
+      <path d="M0,0 L3,8 L6,0" fill="none" stroke="#1a3a5c" stroke-width="1.2"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="820" height="920" fill="#030b1a" rx="8"/>
+
+  <!-- Title -->
+  <text x="410" y="36" text-anchor="middle" fill="#00e5d0" font-size="20" font-weight="bold" letter-spacing="2" filter="url(#glow-cyan)">hadal-zone</text>
+  <text x="410" y="56" text-anchor="middle" fill="#6b8ba4" font-size="11" letter-spacing="1">System Architecture — Decentralised Library for Resilience</text>
+  <line x1="340" y1="66" x2="480" y2="66" stroke="#00e5d0" stroke-opacity="0.4" stroke-width="1"/>
+
+  <!-- ============================================ -->
+  <!-- LAYER 1: Contribution Flow (Surface / Cyan) -->
+  <!-- ============================================ -->
+  <g transform="translate(30, 85)">
+    <!-- Depth label -->
+    <line x1="0" y1="0" x2="0" y2="12" stroke="#1a3a5c" stroke-width="2"/>
+    <text x="8" y="10" fill="#6b8ba4" font-size="8" letter-spacing="1.5" opacity="0.7">0 M — SURFACE</text>
+
+    <!-- Section title -->
+    <circle cx="4" cy="28" r="4" fill="#00e5d0" filter="url(#glow-cyan)"/>
+    <text x="16" y="32" fill="#00e5d0" font-size="10" font-weight="bold" letter-spacing="2">CONTRIBUTION FLOW</text>
+    <line x1="180" y1="28" x2="760" y2="28" stroke="#1a3a5c" stroke-width="0.5"/>
+
+    <!-- Node: Contributors -->
+    <rect x="20" y="44" width="185" height="60" rx="6" fill="#071428" stroke="#1a3a5c" stroke-width="1"/>
+    <text x="32" y="62" fill="#00e5d0" font-size="10" font-weight="bold" letter-spacing="0.5">CONTRIBUTORS</text>
+    <text x="32" y="76" fill="#6b8ba4" font-size="9">Submit Pull Requests with</text>
+    <text x="32" y="88" fill="#6b8ba4" font-size="9">Markdown documents</text>
+    <text x="32" y="100" fill="#6b8ba4" font-size="7" opacity="0.6">content/en/ · content/de/</text>
+
+    <!-- Arrow -->
+    <line x1="215" y1="74" x2="270" y2="74" stroke="#00e5d0" stroke-width="1.2" marker-end="url(#arrow-cyan)"/>
+
+    <!-- Node: Owner Review -->
+    <rect x="280" y="44" width="195" height="60" rx="6" fill="#071428" stroke="#1a3a5c" stroke-width="1"/>
+    <text x="292" y="62" fill="#00e5d0" font-size="10" font-weight="bold" letter-spacing="0.5">OWNER REVIEW</text>
+    <text x="292" y="76" fill="#6b8ba4" font-size="9">PR review &amp; approval</text>
+    <text x="292" y="88" fill="#6b8ba4" font-size="9">Branch protection on main</text>
+    <text x="292" y="100" fill="#6b8ba4" font-size="7" opacity="0.6">CONTRIBUTING.md · PR template</text>
+
+    <!-- Arrow -->
+    <line x1="485" y1="74" x2="540" y2="74" stroke="#00e5d0" stroke-width="1.2" marker-end="url(#arrow-cyan)"/>
+
+    <!-- Node: Merge to Main (highlighted) -->
+    <rect x="550" y="44" width="195" height="60" rx="6" fill="url(#highlight-gradient)" stroke="#00e5d0" stroke-width="1" stroke-opacity="0.6"/>
+    <defs>
+      <linearGradient id="highlight-gradient" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#071428"/>
+        <stop offset="100%" stop-color="#0a1e3d"/>
+      </linearGradient>
+    </defs>
+    <text x="562" y="62" fill="#00e5d0" font-size="10" font-weight="bold" letter-spacing="0.5">MERGE TO MAIN</text>
+    <text x="562" y="76" fill="#6b8ba4" font-size="9">Triggers CI/CD pipeline</text>
+    <text x="562" y="88" fill="#6b8ba4" font-size="9">&amp; notification bots</text>
+    <text x="562" y="100" fill="#6b8ba4" font-size="7" opacity="0.6">git push → main</text>
+  </g>
+
+  <!-- Connector arrow 1→2 -->
+  <line x1="410" y1="200" x2="410" y2="235" stroke="#1a3a5c" stroke-width="1.2" marker-end="url(#arrow-dim)"/>
+
+  <!-- ============================================ -->
+  <!-- LAYER 2: CI/CD Pipeline (Bathyal / Blue)    -->
+  <!-- ============================================ -->
+  <g transform="translate(30, 245)">
+    <!-- Depth label -->
+    <line x1="0" y1="0" x2="0" y2="12" stroke="#1a3a5c" stroke-width="2"/>
+    <text x="8" y="10" fill="#6b8ba4" font-size="8" letter-spacing="1.5" opacity="0.7">1,000 M — BATHYAL ZONE</text>
+
+    <!-- Section title -->
+    <circle cx="4" cy="28" r="4" fill="#00a0ff" filter="url(#glow-blue)"/>
+    <text x="16" y="32" fill="#00a0ff" font-size="10" font-weight="bold" letter-spacing="2">CI/CD PIPELINE — GITHUB ACTIONS</text>
+    <line x1="320" y1="28" x2="760" y2="28" stroke="#1a3a5c" stroke-width="0.5"/>
+
+    <!-- Pipeline steps -->
+    <!-- Step 1: Validate -->
+    <rect x="20" y="44" width="140" height="50" rx="6" fill="#071428" stroke="#1a3a5c" stroke-width="1"/>
+    <text x="90" y="60" text-anchor="middle" fill="#00a0ff" font-size="7" letter-spacing="1">STEP 1</text>
+    <text x="90" y="74" text-anchor="middle" fill="#e8f4ff" font-size="10" font-weight="bold">Validate</text>
+    <text x="90" y="86" text-anchor="middle" fill="#6b8ba4" font-size="8">frontmatter.js</text>
+    <!-- Chevron -->
+    <path d="M160,56 L170,69 L160,82" fill="none" stroke="#1a3a5c" stroke-width="1"/>
+
+    <!-- Step 2: Build -->
+    <rect x="172" y="44" width="130" height="50" rx="6" fill="#071428" stroke="#1a3a5c" stroke-width="1"/>
+    <text x="237" y="60" text-anchor="middle" fill="#00a0ff" font-size="7" letter-spacing="1">STEP 2</text>
+    <text x="237" y="74" text-anchor="middle" fill="#e8f4ff" font-size="10" font-weight="bold">Build</text>
+    <text x="237" y="86" text-anchor="middle" fill="#6b8ba4" font-size="8">Hugo --minify</text>
+    <!-- Chevron -->
+    <path d="M302,56 L312,69 L302,82" fill="none" stroke="#1a3a5c" stroke-width="1"/>
+
+    <!-- Step 3: Index -->
+    <rect x="314" y="44" width="130" height="50" rx="6" fill="#071428" stroke="#1a3a5c" stroke-width="1"/>
+    <text x="379" y="60" text-anchor="middle" fill="#00a0ff" font-size="7" letter-spacing="1">STEP 3</text>
+    <text x="379" y="74" text-anchor="middle" fill="#e8f4ff" font-size="10" font-weight="bold">Index</text>
+    <text x="379" y="86" text-anchor="middle" fill="#6b8ba4" font-size="8">Pagefind</text>
+    <!-- Chevron -->
+    <path d="M444,56 L454,69 L444,82" fill="none" stroke="#1a3a5c" stroke-width="1"/>
+
+    <!-- Step 4: A11y Audit -->
+    <rect x="456" y="44" width="140" height="50" rx="6" fill="#071428" stroke="#1a3a5c" stroke-width="1"/>
+    <text x="526" y="60" text-anchor="middle" fill="#00a0ff" font-size="7" letter-spacing="1">STEP 4</text>
+    <text x="526" y="74" text-anchor="middle" fill="#e8f4ff" font-size="10" font-weight="bold">A11y Audit</text>
+    <text x="526" y="86" text-anchor="middle" fill="#6b8ba4" font-size="8">pa11y-ci</text>
+    <!-- Chevron -->
+    <path d="M596,56 L606,69 L596,82" fill="none" stroke="#1a3a5c" stroke-width="1"/>
+
+    <!-- Step 5: Artifact -->
+    <rect x="608" y="44" width="137" height="50" rx="6" fill="#071428" stroke="#1a3a5c" stroke-width="1"/>
+    <text x="676" y="60" text-anchor="middle" fill="#00a0ff" font-size="7" letter-spacing="1">STEP 5</text>
+    <text x="676" y="74" text-anchor="middle" fill="#e8f4ff" font-size="10" font-weight="bold">Artifact</text>
+    <text x="676" y="86" text-anchor="middle" fill="#6b8ba4" font-size="8">upload-pages</text>
+  </g>
+
+  <!-- Connector arrow 2→3 -->
+  <line x1="410" y1="350" x2="410" y2="385" stroke="#1a3a5c" stroke-width="1.2" marker-end="url(#arrow-dim)"/>
+
+  <!-- ============================================ -->
+  <!-- LAYER 3: Deploy Targets (Abyssal / Purple)  -->
+  <!-- ============================================ -->
+  <g transform="translate(30, 395)">
+    <!-- Depth label -->
+    <line x1="0" y1="0" x2="0" y2="12" stroke="#1a3a5c" stroke-width="2"/>
+    <text x="8" y="10" fill="#6b8ba4" font-size="8" letter-spacing="1.5" opacity="0.7">4,000 M — ABYSSAL ZONE</text>
+
+    <!-- Section title -->
+    <circle cx="4" cy="28" r="4" fill="#8b5cf6" filter="url(#glow-purple)"/>
+    <text x="16" y="32" fill="#8b5cf6" font-size="10" font-weight="bold" letter-spacing="2">DEPLOY TARGETS — PARALLEL</text>
+    <line x1="260" y1="28" x2="760" y2="28" stroke="#1a3a5c" stroke-width="0.5"/>
+
+    <!-- Target 1: GitHub Pages (Primary) -->
+    <rect x="20" y="44" width="355" height="72" rx="6" fill="#071428" stroke="#00e5d0" stroke-width="1" stroke-opacity="0.35"/>
+    <!-- Badge -->
+    <rect x="32" y="52" width="60" height="16" rx="3" fill="#00e5d0" fill-opacity="0.12" stroke="#00e5d0" stroke-opacity="0.3" stroke-width="0.8"/>
+    <text x="62" y="63" text-anchor="middle" fill="#00e5d0" font-size="7" letter-spacing="1">PRIMARY</text>
+    <text x="32" y="82" fill="#e8f4ff" font-size="11" font-weight="bold">GitHub Pages</text>
+    <text x="32" y="95" fill="#6b8ba4" font-size="9">Static hosting via deploy-pages action</text>
+    <text x="32" y="108" fill="#6b8ba4" font-size="7" opacity="0.6">tentaclequing.github.io/hadal-zone/</text>
+
+    <!-- Target 2: IPFS (Fallback) -->
+    <rect x="395" y="44" width="350" height="72" rx="6" fill="#071428" stroke="#8b5cf6" stroke-width="1" stroke-opacity="0.35"/>
+    <!-- Badge -->
+    <rect x="407" y="52" width="140" height="16" rx="3" fill="#8b5cf6" fill-opacity="0.12" stroke="#8b5cf6" stroke-opacity="0.3" stroke-width="0.8"/>
+    <text x="477" y="63" text-anchor="middle" fill="#8b5cf6" font-size="7" letter-spacing="1">DECENTRALISED FALLBACK</text>
+    <text x="407" y="82" fill="#e8f4ff" font-size="11" font-weight="bold">IPFS via Web3.Storage</text>
+    <text x="407" y="95" fill="#6b8ba4" font-size="9">Decentralised pinning via w3cli; CID manifest tracked</text>
+    <text x="407" y="108" fill="#6b8ba4" font-size="7" opacity="0.6">dweb.link/ipfs/bafy...</text>
+  </g>
+
+  <!-- Connector arrow 3→4 -->
+  <line x1="410" y1="520" x2="410" y2="555" stroke="#1a3a5c" stroke-width="1.2" marker-end="url(#arrow-dim)"/>
+
+  <!-- ============================================ -->
+  <!-- LAYER 4: Notification Bots (Hadal / Pink)   -->
+  <!-- ============================================ -->
+  <g transform="translate(30, 565)">
+    <!-- Depth label -->
+    <line x1="0" y1="0" x2="0" y2="12" stroke="#1a3a5c" stroke-width="2"/>
+    <text x="8" y="10" fill="#6b8ba4" font-size="8" letter-spacing="1.5" opacity="0.7">6,000 M — HADAL ZONE</text>
+
+    <!-- Section title -->
+    <circle cx="4" cy="28" r="4" fill="#ff6bb5" filter="url(#glow-pink)"/>
+    <text x="16" y="32" fill="#ff6bb5" font-size="10" font-weight="bold" letter-spacing="2">NOTIFICATION BOTS</text>
+    <line x1="200" y1="28" x2="760" y2="28" stroke="#1a3a5c" stroke-width="0.5"/>
+
+    <!-- Node: GitHub Webhook -->
+    <rect x="20" y="44" width="170" height="52" rx="6" fill="#071428" stroke="#1a3a5c" stroke-width="1"/>
+    <text x="32" y="62" fill="#ff6bb5" font-size="10" font-weight="bold" letter-spacing="0.5">GITHUB WEBHOOK</text>
+    <text x="32" y="76" fill="#6b8ba4" font-size="9">Push event on merge</text>
+    <text x="32" y="88" fill="#6b8ba4" font-size="7" opacity="0.6">push → main</text>
+
+    <!-- Arrow -->
+    <line x1="200" y1="70" x2="255" y2="70" stroke="#ff6bb5" stroke-width="1.2" marker-end="url(#arrow-pink)"/>
+
+    <!-- Node: Bot Service -->
+    <rect x="265" y="44" width="220" height="52" rx="6" fill="#071428" stroke="#1a3a5c" stroke-width="1"/>
+    <text x="277" y="62" fill="#ff6bb5" font-size="10" font-weight="bold" letter-spacing="0.5">BOT SERVICE</text>
+    <text x="277" y="76" fill="#6b8ba4" font-size="9">Express webhook server</text>
+    <text x="277" y="88" fill="#6b8ba4" font-size="7" opacity="0.6">Node.js · bots/</text>
+
+    <!-- Arrow to Telegram -->
+    <line x1="495" y1="60" x2="555" y2="60" stroke="#ff6bb5" stroke-width="1.2" marker-end="url(#arrow-pink)"/>
+    <!-- Arrow to Matrix -->
+    <line x1="495" y1="80" x2="555" y2="80" stroke="#ff6bb5" stroke-width="1.2" marker-end="url(#arrow-pink)"/>
+
+    <!-- Telegram node -->
+    <rect x="565" y="44" width="90" height="26" rx="5" fill="#071428" stroke="#1a3a5c" stroke-width="1"/>
+    <rect x="567" y="50" width="14" height="14" rx="3" fill="#00a0ff" fill-opacity="0.2"/>
+    <text x="574" y="61" text-anchor="middle" fill="#00a0ff" font-size="8" font-weight="bold">T</text>
+    <text x="588" y="61" fill="#00a0ff" font-size="9" font-weight="bold">Telegram</text>
+
+    <!-- Matrix node -->
+    <rect x="565" y="74" width="90" height="26" rx="5" fill="#071428" stroke="#1a3a5c" stroke-width="1"/>
+    <rect x="567" y="80" width="14" height="14" rx="3" fill="#22d3a0" fill-opacity="0.2"/>
+    <text x="574" y="91" text-anchor="middle" fill="#22d3a0" font-size="8" font-weight="bold">M</text>
+    <text x="588" y="91" fill="#22d3a0" font-size="9" font-weight="bold">Matrix</text>
+  </g>
+
+  <!-- Connector arrow 4→5 -->
+  <line x1="410" y1="672" x2="410" y2="707" stroke="#1a3a5c" stroke-width="1.2" marker-end="url(#arrow-dim)"/>
+
+  <!-- ============================================ -->
+  <!-- LAYER 5: User-Facing Site (Trench / Green)  -->
+  <!-- ============================================ -->
+  <g transform="translate(30, 717)">
+    <!-- Depth label -->
+    <line x1="0" y1="0" x2="0" y2="12" stroke="#1a3a5c" stroke-width="2"/>
+    <text x="8" y="10" fill="#6b8ba4" font-size="8" letter-spacing="1.5" opacity="0.7">8,000 M — TRENCH FLOOR</text>
+
+    <!-- Section title -->
+    <circle cx="4" cy="28" r="4" fill="#22d3a0" filter="url(#glow-green)"/>
+    <text x="16" y="32" fill="#22d3a0" font-size="10" font-weight="bold" letter-spacing="2">USER-FACING SITE — themes/hadal/</text>
+    <line x1="310" y1="28" x2="760" y2="28" stroke="#1a3a5c" stroke-width="0.5"/>
+
+    <!-- Feature grid: 4 boxes -->
+    <!-- Search -->
+    <rect x="20" y="44" width="175" height="56" rx="5" fill="#071428" stroke="#1a3a5c" stroke-width="1"/>
+    <text x="32" y="62" fill="#22d3a0" font-size="10" font-weight="bold">Search</text>
+    <text x="32" y="75" fill="#6b8ba4" font-size="8">Pagefind client-side search</text>
+    <text x="32" y="86" fill="#6b8ba4" font-size="8">with filters, ARIA live region</text>
+
+    <!-- Multilingual -->
+    <rect x="205" y="44" width="175" height="56" rx="5" fill="#071428" stroke="#1a3a5c" stroke-width="1"/>
+    <text x="217" y="62" fill="#22d3a0" font-size="10" font-weight="bold">Multilingual</text>
+    <text x="217" y="75" fill="#6b8ba4" font-size="8">Language switcher (EN/DE)</text>
+    <text x="217" y="86" fill="#6b8ba4" font-size="8">translationKey cross-linking</text>
+
+    <!-- Documents -->
+    <rect x="390" y="44" width="175" height="56" rx="5" fill="#071428" stroke="#1a3a5c" stroke-width="1"/>
+    <text x="402" y="62" fill="#22d3a0" font-size="10" font-weight="bold">Documents</text>
+    <text x="402" y="75" fill="#6b8ba4" font-size="8">View/Download, accessible</text>
+    <text x="402" y="86" fill="#6b8ba4" font-size="8">text versions, TL;DR</text>
+
+    <!-- Accessibility -->
+    <rect x="575" y="44" width="175" height="56" rx="5" fill="#071428" stroke="#1a3a5c" stroke-width="1"/>
+    <text x="587" y="62" fill="#22d3a0" font-size="10" font-weight="bold">Accessibility</text>
+    <text x="587" y="75" fill="#6b8ba4" font-size="8">WCAG 2.1 AA, skip-link</text>
+    <text x="587" y="86" fill="#6b8ba4" font-size="8">focus indicators, i18n</text>
+
+    <!-- Categories row -->
+    <text x="20" y="118" fill="#6b8ba4" font-size="7" letter-spacing="1.5" opacity="0.7">8 CATEGORIES</text>
+    <!-- Category pills -->
+    <g transform="translate(20, 126)">
+      <rect x="0" y="0" width="72" height="16" rx="3" fill="#0a1e3d" stroke="#1a3a5c" stroke-width="0.8"/>
+      <text x="36" y="11" text-anchor="middle" fill="#6b8ba4" font-size="7">skillsharing</text>
+
+      <rect x="80" y="0" width="84" height="16" rx="3" fill="#0a1e3d" stroke="#1a3a5c" stroke-width="0.8"/>
+      <text x="122" y="11" text-anchor="middle" fill="#6b8ba4" font-size="7">protest-safety</text>
+
+      <rect x="172" y="0" width="64" height="16" rx="3" fill="#0a1e3d" stroke="#1a3a5c" stroke-width="0.8"/>
+      <text x="204" y="11" text-anchor="middle" fill="#6b8ba4" font-size="7">movement</text>
+
+      <rect x="244" y="0" width="68" height="16" rx="3" fill="#0a1e3d" stroke="#1a3a5c" stroke-width="0.8"/>
+      <text x="278" y="11" text-anchor="middle" fill="#6b8ba4" font-size="7">mutual-aid</text>
+
+      <rect x="320" y="0" width="44" height="16" rx="3" fill="#0a1e3d" stroke="#1a3a5c" stroke-width="0.8"/>
+      <text x="342" y="11" text-anchor="middle" fill="#6b8ba4" font-size="7">legal</text>
+
+      <rect x="372" y="0" width="96" height="16" rx="3" fill="#0a1e3d" stroke="#1a3a5c" stroke-width="0.8"/>
+      <text x="420" y="11" text-anchor="middle" fill="#6b8ba4" font-size="7">digital-security</text>
+
+      <rect x="476" y="0" width="64" height="16" rx="3" fill="#0a1e3d" stroke="#1a3a5c" stroke-width="0.8"/>
+      <text x="508" y="11" text-anchor="middle" fill="#6b8ba4" font-size="7">wellbeing</text>
+
+      <rect x="548" y="0" width="78" height="16" rx="3" fill="#0a1e3d" stroke="#1a3a5c" stroke-width="0.8"/>
+      <text x="587" y="11" text-anchor="middle" fill="#6b8ba4" font-size="7">accessibility</text>
+    </g>
+  </g>
+
+  <!-- ============================================ -->
+  <!-- Legend                                       -->
+  <!-- ============================================ -->
+  <g transform="translate(30, 880)">
+    <line x1="0" y1="0" x2="760" y2="0" stroke="#1a3a5c" stroke-width="0.5"/>
+
+    <circle cx="10" cy="20" r="5" fill="#00e5d0"/>
+    <text x="22" y="24" fill="#6b8ba4" font-size="9">Contribution</text>
+
+    <circle cx="130" cy="20" r="5" fill="#00a0ff"/>
+    <text x="142" y="24" fill="#6b8ba4" font-size="9">CI/CD</text>
+
+    <circle cx="210" cy="20" r="5" fill="#8b5cf6"/>
+    <text x="222" y="24" fill="#6b8ba4" font-size="9">Hosting</text>
+
+    <circle cx="300" cy="20" r="5" fill="#ff6bb5"/>
+    <text x="312" y="24" fill="#6b8ba4" font-size="9">Notifications</text>
+
+    <circle cx="430" cy="20" r="5" fill="#22d3a0"/>
+    <text x="442" y="24" fill="#6b8ba4" font-size="9">User Interface</text>
+
+    <text x="760" y="24" text-anchor="end" fill="#6b8ba4" font-size="8" opacity="0.5">CC BY-SA 4.0</text>
+  </g>
+</svg>

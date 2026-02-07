@@ -21,6 +21,12 @@ We welcome contributions from anyone. You do not need to be a developer -- if yo
 
 Read the full contribution guidelines: [CONTRIBUTING.md](CONTRIBUTING.md)
 
+## Architecture
+
+![hadal-zone architecture diagram](docs/architecture.svg)
+
+The site is built with Hugo, deployed to GitHub Pages and IPFS, with notification bots for Telegram and Matrix. See the [interactive version](docs/architecture.html) for a detailed, explorable view.
+
 ## Help mirror the library
 
 If you run an IPFS node, you can help keep the library available by pinning it. Each deploy publishes the site to IPFS, and the more nodes that pin the content, the more resilient the network becomes. See the IPFS documentation for how to pin a CID to your node.
