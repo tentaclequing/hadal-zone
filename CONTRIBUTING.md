@@ -88,6 +88,7 @@ Translations make the library accessible across languages and borders. Content c
 | `tags`             | Yes       | List of descriptive tags for discoverability                                | `["food", "community"]`             |
 | `date`             | Yes       | Publication date in YYYY-MM-DD format                                       | `2026-01-15`                         |
 | `translationKey`   | Yes       | A unique key shared across all translations of the same document            | `"community-fridge-setup"`           |
+| `license`          | No        | Per-document license override; defaults to CC BY-SA 4.0 if omitted          | `"CC0 1.0"`                          |
 | `adapted`          | No        | Set to `true` if the translation substantially differs from the original    | `true`                               |
 | `adaptation_note`  | No        | Explanation of how and why the content was adapted                          | `"Adapted for German food safety regulations."` |
 

@@ -39,6 +39,16 @@
           </time>
         </div>
 
+        {{/* License — use per-document license if set, otherwise default to CC BY-SA 4.0 */}}
+        <div class="meta-item meta-license">
+          <strong>{{ i18n "label_license" }}:</strong>
+          {{- with .Params.license }}
+            {{ . }}
+          {{- else }}
+            CC BY-SA 4.0
+          {{- end }}
+        </div>
+
         {{/* Tags */}}
         {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
       </div>
