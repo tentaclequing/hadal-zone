@@ -21,8 +21,11 @@ body {
   color: #222;
   font-family: sans-serif;
   line-height: 1.5;
-  margin: 1rem;
+  margin: 1rem auto;
+  padding: 0 1rem;
   max-width: 768px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
 
 header {
@@ -319,6 +322,21 @@ textarea:focus-visible {
   outline-offset: 2px;
 }
 
+.search-filters {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.search-filter {
+  padding: 0.35rem 0.5rem;
+  border: 2px solid #555;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  background: #fff;
+  color: #222;
+}
+
 .search-results {
   margin-top: 0.5rem;
 }
@@ -326,6 +344,7 @@ textarea:focus-visible {
 .search-results-list {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 .search-result-item {
@@ -335,6 +354,12 @@ textarea:focus-visible {
 
 .search-result-item:last-child {
   border-bottom: none;
+}
+
+.search-result-item[aria-selected="true"] {
+  background: #f0f7ff;
+  outline: 2px solid #0066cc;
+  outline-offset: -2px;
 }
 
 .search-excerpt {
@@ -349,8 +374,14 @@ textarea:focus-visible {
   font-style: italic;
 }
 
-/* Responsive */
+/* Responsive — covers mobile and 200% zoom on typical screens */
 @media (max-width: 600px) {
+  .header-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
   .document-meta {
     flex-direction: column;
     gap: 0.25rem;
@@ -361,4 +392,18 @@ textarea:focus-visible {
     align-items: flex-start;
     gap: 0.5rem;
   }
+
+  .search-filters {
+    flex-direction: column;
+  }
+
+  .search-input {
+    max-width: 100%;
+  }
+}
+
+/* Ensure images and embedded content don't overflow */
+img, svg, video, iframe {
+  max-width: 100%;
+  height: auto;
 }

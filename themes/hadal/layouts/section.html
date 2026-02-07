@@ -10,7 +10,7 @@
 
     {{- $pages := .Pages }}
     {{- if eq (len $pages) 0 }}
-      <p class="no-documents">{{ i18n "search_no_results" | default "No documents yet." }}</p>
+      <p class="no-documents">{{ i18n "label_no_documents" | default "No documents yet." }}</p>
     {{- else }}
       <ul class="document-list">
         {{- range $pages }}

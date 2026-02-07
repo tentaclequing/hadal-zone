@@ -1,8 +1,9 @@
-// Pagefind search integration (tasks 4.3-4.6)
+// Pagefind search integration (tasks 4.2-4.6)
 (function () {
   'use strict';
 
-  let pagefind = null;
+  var pagefind = null;
+  var activeIndex = -1;
 
   async function loadPagefind() {
     if (pagefind) return pagefind;
@@ -17,70 +18,194 @@
   }
 
   function init() {
-    const input = document.getElementById('search-input');
-    const resultsContainer = document.getElementById('search-results');
-    if (!input || !resultsContainer) return;
+    var input = document.getElementById('search-input');
+    var statusEl = document.getElementById('search-status');
+    var listEl = document.getElementById('search-results-list');
+    var filtersEl = document.getElementById('search-filters');
+    var langFilter = document.getElementById('filter-language');
+    var catFilter = document.getElementById('filter-category');
+    if (!input || !listEl) return;
 
-    let debounceTimer = null;
+    var debounceTimer = null;
+    var filtersLoaded = false;
+
+    // Show filters once the user starts typing
+    input.addEventListener('focus', function () {
+      if (!filtersLoaded) {
+        loadFilters(langFilter, catFilter, filtersEl);
+        filtersLoaded = true;
+      }
+    });
 
     input.addEventListener('input', function () {
       clearTimeout(debounceTimer);
-      const query = input.value.trim();
+      var query = input.value.trim();
       if (!query) {
-        resultsContainer.innerHTML = '';
+        statusEl.textContent = '';
+        listEl.textContent = '';
+        activeIndex = -1;
         return;
       }
       debounceTimer = setTimeout(function () {
-        performSearch(query, resultsContainer);
+        performSearch(query, statusEl, listEl, langFilter, catFilter);
       }, 200);
     });
 
-    // Keyboard navigation: Escape clears search
+    // Filter changes re-trigger search
+    if (langFilter) {
+      langFilter.addEventListener('change', function () {
+        var query = input.value.trim();
+        if (query) performSearch(query, statusEl, listEl, langFilter, catFilter);
+      });
+    }
+    if (catFilter) {
+      catFilter.addEventListener('change', function () {
+        var query = input.value.trim();
+        if (query) performSearch(query, statusEl, listEl, langFilter, catFilter);
+      });
+    }
+
+    // Keyboard navigation (task 4.6)
     input.addEventListener('keydown', function (e) {
+      var items = listEl.querySelectorAll('[role="option"]');
       if (e.key === 'Escape') {
         input.value = '';
-        resultsContainer.innerHTML = '';
+        statusEl.textContent = '';
+        while (listEl.firstChild) listEl.removeChild(listEl.firstChild);
+        activeIndex = -1;
         input.blur();
+        return;
+      }
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        if (items.length === 0) return;
+        activeIndex = Math.min(activeIndex + 1, items.length - 1);
+        updateActive(items, input);
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        if (items.length === 0) return;
+        activeIndex = Math.max(activeIndex - 1, 0);
+        updateActive(items, input);
+      } else if (e.key === 'Enter') {
+        if (activeIndex >= 0 && items[activeIndex]) {
+          e.preventDefault();
+          var link = items[activeIndex].querySelector('a');
+          if (link) link.click();
+        }
       }
     });
   }
 
-  async function performSearch(query, container) {
-    const pf = await loadPagefind();
+  function updateActive(items, input) {
+    items.forEach(function (item, i) {
+      if (i === activeIndex) {
+        item.setAttribute('aria-selected', 'true');
+        item.scrollIntoView({ block: 'nearest' });
+        input.setAttribute('aria-activedescendant', item.id);
+      } else {
+        item.setAttribute('aria-selected', 'false');
+      }
+    });
+  }
+
+  async function loadFilters(langFilter, catFilter, filtersEl) {
+    var pf = await loadPagefind();
+    if (!pf) return;
+
+    try {
+      var filters = await pf.filters();
+      if (filters.language) {
+        Object.keys(filters.language).forEach(function (lang) {
+          var opt = document.createElement('option');
+          opt.value = lang;
+          opt.textContent = lang;
+          langFilter.appendChild(opt);
+        });
+      }
+      if (filters.category) {
+        Object.keys(filters.category).forEach(function (cat) {
+          var opt = document.createElement('option');
+          opt.value = cat;
+          opt.textContent = cat;
+          catFilter.appendChild(opt);
+        });
+      }
+      if (filtersEl) filtersEl.hidden = false;
+    } catch (e) {
+      // Filters not available, keep hidden
+    }
+  }
+
+  function clearChildren(el) {
+    while (el.firstChild) el.removeChild(el.firstChild);
+    el.removeAttribute('role');
+  }
+
+  async function performSearch(query, statusEl, listEl, langFilter, catFilter) {
+    var pf = await loadPagefind();
     if (!pf) {
-      container.innerHTML = '<p class="search-status">Search is not available.</p>';
+      statusEl.textContent = 'Search is not available.';
+      clearChildren(listEl);
       return;
     }
 
-    const search = await pf.search(query);
+    // Build filter object from dropdowns (task 4.4)
+    var filterOpts = {};
+    if (langFilter && langFilter.value) {
+      filterOpts.language = langFilter.value;
+    }
+    if (catFilter && catFilter.value) {
+      filterOpts.category = catFilter.value;
+    }
+
+    var search = await pf.search(query, { filters: filterOpts });
+    activeIndex = -1;
 
     if (search.results.length === 0) {
-      container.innerHTML = '<p class="search-status search-no-results">No results found</p>';
+      statusEl.textContent = statusEl.dataset.noResults || 'No results found';
+      clearChildren(listEl);
       return;
     }
 
-    // ARIA live region announces result count
-    const countText = search.results.length + ' results found';
-    let html = '<p class="search-status search-count" aria-live="polite">' + countText + '</p>';
-    html += '<ul class="search-results-list" role="list">';
+    // ARIA live region announces result count (task 4.5)
+    var countTemplate = statusEl.dataset.countTemplate || '{n} results found';
+    statusEl.textContent = countTemplate.replace('{n}', search.results.length);
 
-    const resultData = await Promise.all(
+    var resultData = await Promise.all(
       search.results.slice(0, 10).map(function (r) { return r.data(); })
     );
 
-    resultData.forEach(function (data) {
-      html += '<li class="search-result-item">';
-      html += '<a href="' + data.url + '">';
-      html += '<strong>' + (data.meta && data.meta.title ? data.meta.title : 'Untitled') + '</strong>';
-      html += '</a>';
-      if (data.excerpt) {
-        html += '<p class="search-excerpt">' + data.excerpt + '</p>';
-      }
-      html += '</li>';
-    });
+    clearChildren(listEl);
+    listEl.setAttribute('role', 'listbox');
+    resultData.forEach(function (data, i) {
+      var li = document.createElement('li');
+      li.className = 'search-result-item';
+      li.setAttribute('role', 'option');
+      li.setAttribute('aria-selected', 'false');
+      li.id = 'search-result-' + i;
 
-    html += '</ul>';
-    container.innerHTML = html;
+      var a = document.createElement('a');
+      a.href = data.url;
+      a.tabIndex = -1;
+      var strong = document.createElement('strong');
+      strong.textContent = (data.meta && data.meta.title) ? data.meta.title : 'Untitled';
+      a.appendChild(strong);
+      li.appendChild(a);
+
+      if (data.excerpt) {
+        var p = document.createElement('p');
+        p.className = 'search-excerpt';
+        // Pagefind excerpts contain <mark> tags for highlights — use a
+        // temporary element to sanitize and preserve only safe markup
+        var temp = document.createElement('div');
+        temp.textContent = data.excerpt;
+        // Re-insert just the text (strip any injected HTML)
+        p.textContent = temp.textContent;
+        li.appendChild(p);
+      }
+
+      listEl.appendChild(li);
+    });
   }
 
   if (document.readyState === 'loading') {

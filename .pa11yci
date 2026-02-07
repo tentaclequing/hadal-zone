@@ -20,6 +20,9 @@
     "http://localhost:8080/en/wellbeing/",
     "http://localhost:8080/en/accessibility/",
     "http://localhost:8080/en/mirror/",
-    "http://localhost:8080/de/mirror/"
+    "http://localhost:8080/de/mirror/",
+    "http://localhost:8080/en/digital-security/phone-security-at-protests/",
+    "http://localhost:8080/en/protest-safety/test-doc/",
+    "http://localhost:8080/en/legal/know-your-rights-at-protests/"
   ]
 }

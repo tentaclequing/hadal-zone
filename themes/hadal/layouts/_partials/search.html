@@ -1,4 +1,4 @@
-<div class="search-container" role="search">
+<div class="search-container" role="search" aria-label="{{ i18n "nav_search" }}">
   <label for="search-input" class="sr-only">{{ i18n "nav_search" }}</label>
   <input
     type="search"
@@ -6,8 +6,25 @@
     class="search-input"
     placeholder="{{ i18n "search_placeholder" }}"
     aria-label="{{ i18n "nav_search" }}"
+    aria-owns="search-results-list"
+    aria-autocomplete="list"
     autocomplete="off"
   >
-  <div id="search-results" class="search-results" aria-live="polite" role="region" aria-label="{{ i18n "nav_search" }}">
+  <div class="search-filters" id="search-filters" hidden>
+    <label for="filter-language" class="sr-only">{{ i18n "label_language" }}</label>
+    <select id="filter-language" class="search-filter">
+      <option value="">{{ i18n "label_language" }}</option>
+    </select>
+    <label for="filter-category" class="sr-only">{{ i18n "label_category" }}</label>
+    <select id="filter-category" class="search-filter">
+      <option value="">{{ i18n "label_category" }}</option>
+    </select>
+  </div>
+  <div id="search-results" class="search-results" role="region" aria-label="{{ i18n "nav_search" }}">
+    <div id="search-status" class="search-status" aria-live="polite" aria-atomic="true"
+         data-no-results="{{ i18n "search_no_results" }}"
+         data-count-template="{{ i18n "search_results_count" }}"
+         data-unavailable="{{ i18n "search_unavailable" | default "Search is not available." }}"></div>
+    <ul id="search-results-list" class="search-results-list" aria-label="{{ i18n "nav_search" }}"></ul>
   </div>
 </div>

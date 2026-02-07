@@ -1,7 +1,7 @@
 {{ define "main" }}
-  <article class="document-page">
+  <article class="document-page" data-pagefind-body>
     <header class="document-header">
-      <h1>{{ .Title }}</h1>
+      <h1 data-pagefind-meta="title">{{ .Title }}</h1>
 
       {{/* Metadata display */}}
       <div class="document-meta">
@@ -20,14 +20,14 @@
         <div class="meta-item meta-category">
           <strong>{{ i18n "label_category" }}:</strong>
           {{- with .CurrentSection }}
-            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+            <a href="{{ .RelPermalink }}" data-pagefind-filter="category">{{ .Title }}</a>
           {{- end }}
         </div>
 
         {{/* Language */}}
         <div class="meta-item meta-language">
           <strong>{{ i18n "label_language" }}:</strong>
-          {{ site.Language.LanguageName }}
+          <span data-pagefind-filter="language">{{ site.Language.LanguageName }}</span>
         </div>
 
         {{/* Date */}}
@@ -46,7 +46,7 @@
 
     {{/* TL;DR displayed prominently (task 2.5 / spec: above preview/download) */}}
     {{- with .Params.tldr }}
-      <div class="tldr" role="note" aria-label="{{ i18n "label_tldr" }}">
+      <div class="tldr" role="note" aria-label="{{ i18n "label_tldr" }}" data-pagefind-meta="tldr">
         <strong>{{ i18n "label_tldr" }}:</strong>
         <p>{{ . }}</p>
       </div>

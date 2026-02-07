@@ -28,9 +28,9 @@
 ## 4. Search Integration
 
 - [x] 4.1 Add Pagefind to the build pipeline (post-Hugo-build indexing step)
-- [ ] 4.2 Configure Pagefind to index document titles, TL;DR summaries, body text, categories, and tags
+- [x] 4.2 Configure Pagefind to index document titles, TL;DR summaries, body text, categories, and tags
 - [x] 4.3 Add search UI component to the site header (search bar with placeholder text)
-- [ ] 4.4 Implement language and category filter controls in the search results view
+- [x] 4.4 Implement language and category filter controls in the search results view
 - [x] 4.5 Add ARIA live region for search results count announcement (screen reader support)
 - [x] 4.6 Ensure search UI is fully keyboard-navigable (tab to search, arrow through results, Enter to select)
 
@@ -39,7 +39,7 @@
 - [x] 5.1 Implement site-wide CSS with high-contrast colour scheme meeting WCAG 2.1 AA contrast ratios
 - [x] 5.2 Add visible focus indicators for all interactive elements
 - [x] 5.3 Ensure responsive layout works at mobile (<768px), tablet, and desktop breakpoints
-- [ ] 5.4 Test and fix layout at 200% browser zoom — no content loss or overflow
+- [x] 5.4 Test and fix layout at 200% browser zoom — no content loss or overflow
 - [x] 5.5 Add semantic HTML landmarks throughout all templates (nav, main, aside, footer)
 - [x] 5.6 Add alt text to all images (logo, any decorative/content images)
 - [x] 5.7 Ensure no information is conveyed by colour alone (add text labels or icons alongside colour cues)
@@ -87,14 +87,14 @@
 
 - [x] 11.1 Write CONTRIBUTING.md with instructions for: adding documents, submitting translations, metadata requirements, accessible text requirement, review process
 - [x] 11.2 Create Pull Request template (`.github/PULL_REQUEST_TEMPLATE.md`) with prompts for document type, language, category, author, and checklist
-- [ ] 11.3 Configure branch protection on main: require PR review before merge
-- [ ] 11.4 Add example/seed documents (3-5 initial resources in English) to demonstrate the expected structure
+- [x] 11.3 Configure branch protection on main: require PR review before merge
+- [x] 11.4 Add example/seed documents (3-5 initial resources in English) to demonstrate the expected structure
 
 ## 12. Seed Content and Launch
 
-- [ ] 12.1 Add 3-5 seed documents across different categories with full metadata, TL;DR summaries, and accessible .md versions
-- [ ] 12.2 Add at least 1 translated/adapted document to demonstrate multi-language linking
-- [ ] 12.3 Run full accessibility audit (Lighthouse + manual screen reader test) and fix any issues
+- [x] 12.1 Add 3-5 seed documents across different categories with full metadata, TL;DR summaries, and accessible .md versions
+- [x] 12.2 Add at least 1 translated/adapted document to demonstrate multi-language linking
+- [x] 12.3 Run full accessibility audit (Lighthouse + manual screen reader test) and fix any issues
 - [ ] 12.4 Test IPFS pinning end-to-end: verify site is browsable via IPFS gateway
 - [ ] 12.5 Test notification bots end-to-end: verify Telegram and Matrix messages on new document merge
 - [x] 12.6 Write a brief README.md for the repository explaining what hadal-zone is and how to contribute
