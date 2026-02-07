@@ -1,9 +1,111 @@
 {{ define "main" }}
-  {{ .Content }}
-  {{ range site.RegularPages }}
-    <section>
-      <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
-      {{ .Summary }}
-    </section>
+  {{/* Introductory content from _index.md */}}
+  {{ with .Content }}
+    <div class="homepage-intro">
+      {{ . }}
+    </div>
   {{ end }}
+
+  {{/* ============================================================
+       Content Library — category grid
+       ============================================================ */}}
+  <section class="content-library" aria-labelledby="content-library-heading">
+    <h2 id="content-library-heading">{{ i18n "homepage_content_library" | default "Content Library" }}</h2>
+    <p class="section-description">{{ i18n "homepage_content_library_desc" | default "Browse resources by category" }}</p>
+
+    {{/* Define the categories to display */}}
+    {{ $categories := slice "skillsharing" "protest-safety" "movement" "mutual-aid" "legal" "digital-security" "wellbeing" "accessibility" }}
+
+    <div class="category-grid" role="list">
+      {{ range $categories }}
+        {{ $catSlug := . }}
+        {{/* Look up the section page for this category */}}
+        {{ $sectionPage := site.GetPage (printf "/%s" $catSlug) }}
+        {{ if $sectionPage }}
+          {{/* Get the i18n name and description using the category key */}}
+          {{ $nameKey := printf "category_%s" (replace $catSlug "-" "_") }}
+          {{ $descKey := printf "category_%s_desc" (replace $catSlug "-" "_") }}
+          {{ $catName := i18n $nameKey | default $sectionPage.Title }}
+          {{ $catDesc := i18n $descKey | default ($sectionPage.Params.description | default "") }}
+          {{/* Count documents in this section (exclude subsection _index pages) */}}
+          {{ $docCount := 0 }}
+          {{ range $sectionPage.Pages }}
+            {{ if ne .Kind "section" }}
+              {{ $docCount = add $docCount 1 }}
+            {{ end }}
+          {{ end }}
+          <a href="{{ $sectionPage.RelPermalink }}" class="category-card" role="listitem">
+            <h3 class="category-card-name">{{ $catName }}</h3>
+            {{ with $catDesc }}
+              <p class="category-card-desc">{{ . }}</p>
+            {{ end }}
+            <span class="category-card-count" aria-label="{{ $docCount }} documents">{{ $docCount }}</span>
+          </a>
+        {{ end }}
+      {{ end }}
+    </div>
+  </section>
+
+  {{/* ============================================================
+       Latest — recent documents + announcements, interleaved by date
+       ============================================================ */}}
+  <section class="latest-section" aria-labelledby="latest-heading">
+    <h2 id="latest-heading">{{ i18n "homepage_latest" | default "Latest" }}</h2>
+    <p class="section-description">{{ i18n "homepage_latest_desc" | default "Recent additions and announcements" }}</p>
+
+    {{/* Gather all regular pages (documents) excluding section _index pages */}}
+    {{ $allItems := slice }}
+    {{ range site.RegularPages }}
+      {{/* Exclude the homepage _index itself and mirror _index */}}
+      {{ if and (ne .Kind "home") (ne .RelPermalink "/") }}
+        {{ $allItems = $allItems | append . }}
+      {{ end }}
+    {{ end }}
+
+    {{/* Sort by date descending and take 10 */}}
+    {{ $latestItems := sort $allItems ".Date" "desc" | first 10 }}
+
+    {{ if gt (len $latestItems) 0 }}
+      <ul class="latest-list" role="list">
+        {{ range $latestItems }}
+          {{ $isAnnouncement := eq .Section "announcements" }}
+          <li class="latest-item{{ if $isAnnouncement }} latest-item--announcement{{ end }}">
+            <article>
+              <div class="latest-item-header">
+                <span class="latest-item-type">
+                  {{ if $isAnnouncement }}
+                    {{ i18n "label_announcement" | default "Announcement" }}
+                  {{ else }}
+                    {{ i18n "label_document" | default "Document" }}
+                  {{ end }}
+                </span>
+                {{/* Show the category for documents */}}
+                {{ if not $isAnnouncement }}
+                  {{ with .CurrentSection }}
+                    {{ if ne .IsHome true }}
+                      <span class="latest-item-category">
+                        {{ $nameKey := printf "category_%s" (replace .Section "-" "_") }}
+                        {{ i18n $nameKey | default .Title }}
+                      </span>
+                    {{ end }}
+                  {{ end }}
+                {{ end }}
+              </div>
+              <h3 class="latest-item-title">
+                <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+              </h3>
+              <time class="latest-item-date" datetime="{{ .Date | time.Format "2006-01-02" }}">
+                {{ .Date | time.Format ":date_long" }}
+              </time>
+              {{ with .Params.tldr }}
+                <p class="latest-item-tldr">{{ . }}</p>
+              {{ end }}
+            </article>
+          </li>
+        {{ end }}
+      </ul>
+    {{ else }}
+      <p class="no-documents">{{ i18n "label_no_documents" | default "No documents yet." }}</p>
+    {{ end }}
+  </section>
 {{ end }}

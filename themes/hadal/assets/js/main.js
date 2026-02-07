@@ -24,6 +24,7 @@
     var filtersEl = document.getElementById('search-filters');
     var langFilter = document.getElementById('filter-language');
     var catFilter = document.getElementById('filter-category');
+    var tagFilter = document.getElementById('filter-tag');
     if (!input || !listEl) return;
 
     var debounceTimer = null;
@@ -32,7 +33,7 @@
     // Show filters once the user starts typing
     input.addEventListener('focus', function () {
       if (!filtersLoaded) {
-        loadFilters(langFilter, catFilter, filtersEl);
+        loadFilters(langFilter, catFilter, tagFilter, filtersEl);
         filtersLoaded = true;
       }
     });
@@ -47,7 +48,7 @@
         return;
       }
       debounceTimer = setTimeout(function () {
-        performSearch(query, statusEl, listEl, langFilter, catFilter);
+        performSearch(query, statusEl, listEl, langFilter, catFilter, tagFilter);
       }, 200);
     });
 
@@ -55,13 +56,19 @@
     if (langFilter) {
       langFilter.addEventListener('change', function () {
         var query = input.value.trim();
-        if (query) performSearch(query, statusEl, listEl, langFilter, catFilter);
+        if (query) performSearch(query, statusEl, listEl, langFilter, catFilter, tagFilter);
       });
     }
     if (catFilter) {
       catFilter.addEventListener('change', function () {
         var query = input.value.trim();
-        if (query) performSearch(query, statusEl, listEl, langFilter, catFilter);
+        if (query) performSearch(query, statusEl, listEl, langFilter, catFilter, tagFilter);
+      });
+    }
+    if (tagFilter) {
+      tagFilter.addEventListener('change', function () {
+        var query = input.value.trim();
+        if (query) performSearch(query, statusEl, listEl, langFilter, catFilter, tagFilter);
       });
     }
 
@@ -108,7 +115,7 @@
     });
   }
 
-  async function loadFilters(langFilter, catFilter, filtersEl) {
+  async function loadFilters(langFilter, catFilter, tagFilter, filtersEl) {
     var pf = await loadPagefind();
     if (!pf) return;
 
@@ -130,6 +137,14 @@
           catFilter.appendChild(opt);
         });
       }
+      if (filters.tag && tagFilter) {
+        Object.keys(filters.tag).forEach(function (tag) {
+          var opt = document.createElement('option');
+          opt.value = tag;
+          opt.textContent = tag;
+          tagFilter.appendChild(opt);
+        });
+      }
       if (filtersEl) filtersEl.hidden = false;
     } catch (e) {
       // Filters not available, keep hidden
@@ -141,7 +156,7 @@
     el.removeAttribute('role');
   }
 
-  async function performSearch(query, statusEl, listEl, langFilter, catFilter) {
+  async function performSearch(query, statusEl, listEl, langFilter, catFilter, tagFilter) {
     var pf = await loadPagefind();
     if (!pf) {
       statusEl.textContent = 'Search is not available.';
@@ -156,6 +171,9 @@
     }
     if (catFilter && catFilter.value) {
       filterOpts.category = catFilter.value;
+    }
+    if (tagFilter && tagFilter.value) {
+      filterOpts.tag = tagFilter.value;
     }
 
     var search = await pf.search(query, { filters: filterOpts });
@@ -195,12 +213,17 @@
       if (data.excerpt) {
         var p = document.createElement('p');
         p.className = 'search-excerpt';
-        // Pagefind excerpts contain <mark> tags for highlights — use a
-        // temporary element to sanitize and preserve only safe markup
+        // Pagefind excerpts contain <mark> tags for highlights.
+        // Sanitize: strip all HTML except <mark> tags to prevent XSS
+        var safe = data.excerpt
+          .replace(/<mark>/g, '\x00MARK_OPEN\x00')
+          .replace(/<\/mark>/g, '\x00MARK_CLOSE\x00');
         var temp = document.createElement('div');
-        temp.textContent = data.excerpt;
-        // Re-insert just the text (strip any injected HTML)
-        p.textContent = temp.textContent;
+        temp.textContent = safe;
+        var sanitized = temp.innerHTML
+          .replace(/\x00MARK_OPEN\x00/g, '<mark>')
+          .replace(/\x00MARK_CLOSE\x00/g, '</mark>');
+        p.innerHTML = sanitized;
         li.appendChild(p);
       }
 

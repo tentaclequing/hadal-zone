@@ -511,6 +511,13 @@ mark {
   color: var(--text-bright);
 }
 
+.search-excerpt mark {
+  background: rgba(0, 229, 208, 0.2);
+  color: var(--text-bright);
+  padding: 0.1em 0.2em;
+  border-radius: 2px;
+}
+
 /* ================================================================
    Focus indicators
    ================================================================ */
