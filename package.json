@@ -6,10 +6,12 @@
   "scripts": {
     "test": "jest",
     "test:frontmatter": "jest scripts/tests/validate-frontmatter.test.js",
-    "validate:frontmatter": "node scripts/validate-frontmatter.js"
+    "validate:frontmatter": "node scripts/validate-frontmatter.js",
+    "build:search": "pagefind --site public"
   },
   "devDependencies": {
     "jest": "^29.7.0",
+    "pagefind": "^1.3.0",
     "js-yaml": "^4.1.0"
   }
 }
