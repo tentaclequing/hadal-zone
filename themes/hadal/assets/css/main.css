@@ -258,6 +258,97 @@ a:focus {
   text-decoration: underline;
 }
 
+/* Visible focus indicators for all interactive elements (task 5.2) */
+*:focus-visible {
+  outline: 3px solid #f0c040;
+  outline-offset: 2px;
+}
+
+a:focus-visible {
+  outline: 3px solid #f0c040;
+  outline-offset: 2px;
+  text-decoration: underline;
+}
+
+.btn:focus-visible,
+.btn-accessible:focus-visible {
+  outline: 3px solid #f0c040;
+  outline-offset: 2px;
+}
+
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid #f0c040;
+  outline-offset: 2px;
+  border-color: #0066cc;
+}
+
+/* Screen reader only utility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Search (tasks 4.3-4.6) */
+.search-container {
+  margin: 0.75rem 0;
+}
+
+.search-input {
+  width: 100%;
+  max-width: 400px;
+  padding: 0.5rem 0.75rem;
+  border: 2px solid #555;
+  border-radius: 4px;
+  font-size: 1rem;
+  background: #fff;
+  color: #222;
+}
+
+.search-input:focus {
+  border-color: #0066cc;
+  outline: 3px solid #f0c040;
+  outline-offset: 2px;
+}
+
+.search-results {
+  margin-top: 0.5rem;
+}
+
+.search-results-list {
+  list-style: none;
+  padding: 0;
+}
+
+.search-result-item {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.search-result-item:last-child {
+  border-bottom: none;
+}
+
+.search-excerpt {
+  font-size: 0.9rem;
+  color: #555;
+  margin: 0.25rem 0 0 0;
+}
+
+.search-status {
+  font-size: 0.9rem;
+  color: #555;
+  font-style: italic;
+}
+
 /* Responsive */
 @media (max-width: 600px) {
   .document-meta {

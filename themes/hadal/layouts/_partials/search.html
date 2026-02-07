@@ -1,0 +1,13 @@
+<div class="search-container" role="search">
+  <label for="search-input" class="sr-only">{{ i18n "nav_search" }}</label>
+  <input
+    type="search"
+    id="search-input"
+    class="search-input"
+    placeholder="{{ i18n "search_placeholder" }}"
+    aria-label="{{ i18n "nav_search" }}"
+    autocomplete="off"
+  >
+  <div id="search-results" class="search-results" aria-live="polite" role="region" aria-label="{{ i18n "nav_search" }}">
+  </div>
+</div>
