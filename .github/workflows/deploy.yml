@@ -186,6 +186,7 @@ jobs:
           cat ipfs-manifest.json
 
       - name: Commit CID manifest
+        continue-on-error: true
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
