@@ -1,1 +1,5 @@
-<p>Copyright {{ now.Year }}. All rights reserved.</p>
+<p>{{ i18n "footer_license" }}</p>
+{{- with site.Params.ipfsGateway }}
+  <p><a href="{{ . }}" rel="noopener" target="_blank">{{ i18n "footer_ipfs" }}</a></p>
+{{- end }}
+<p><a href="https://github.com/tentaclequing/hadal-zone" rel="noopener" target="_blank">{{ i18n "footer_source" }}</a></p>
